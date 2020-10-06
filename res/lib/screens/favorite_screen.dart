@@ -6,7 +6,7 @@ import 'package:res/generated/i18n.dart';
 import 'package:res/widgets/grid_pro_favorite.dart';
 
 
-import 'package:res/widgets/loaders/color_loader_2.dart';
+import 'package:res/widgets/loaders/color_loader_3.dart';
 
 class FavoriteScreen extends StatefulWidget {
   @override
@@ -42,7 +42,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
             SizedBox(height: 10.0),
             Consumer<FavoriteProvider>(
               builder: (context, model, child) => model.isLoading
-                  ? Center(child: ColorLoader2(color1: Colors.redAccent,color2: Colors.deepPurple,color3: Colors.green,))
+                  ? Center(child: ColorLoader3())
                   : GridView.builder(
                       shrinkWrap: true,
                       primary: false,

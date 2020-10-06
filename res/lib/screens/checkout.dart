@@ -6,6 +6,7 @@ import 'package:res/data/providers/userprovider.dart';
 import 'package:res/generated/i18n.dart';
 import 'package:res/screens/login1.dart';
 import 'package:res/widgets/cart_item.dart';
+import 'package:res/widgets/loaders/color_loader_3.dart';
 
 class Checkout extends StatefulWidget {
   @override
@@ -131,7 +132,7 @@ class _CheckoutState extends State<Checkout> {
               ),
             ),
                    total.isLoading
-                  ? CircularProgressIndicator()
+                  ? ColorLoader3()
                   : Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListView.builder(

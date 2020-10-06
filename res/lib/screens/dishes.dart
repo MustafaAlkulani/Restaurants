@@ -22,7 +22,9 @@ class DishesScreen extends StatefulWidget {
   @override
   _DishesScreenState createState() => _DishesScreenState();
 }
-   String countname = 'oman';
+
+String countname = 'عمان';
+
 class _DishesScreenState extends State<DishesScreen> {
   void initState() {
     Future.microtask(() {
@@ -33,8 +35,6 @@ class _DishesScreenState extends State<DishesScreen> {
 
   @override
   Widget build(BuildContext context) {
- 
-
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -46,7 +46,7 @@ class _DishesScreenState extends State<DishesScreen> {
           ),
           centerTitle: true,
           title: Text(
-           I18n.of(context).dishes,
+            I18n.of(context).dishes,
           ),
           elevation: 0.0,
           actions: <Widget>[
@@ -88,12 +88,10 @@ class _DishesScreenState extends State<DishesScreen> {
                                 title: model.dishResponse.data[index].country,
                                 isHome: false,
                                 tap: () {
-                                
-                                    Provider.of<DishProvider>(context,
-                                            listen: false)
-                                        .getCountrydish(model
-                                            .dishResponse.data[index].country);
-                                  
+                                  Provider.of<DishProvider>(context,
+                                          listen: false)
+                                      .getCountrydish(model
+                                          .dishResponse.data[index].country);
 
                                   setState(() {
                                     countname =
@@ -109,11 +107,11 @@ class _DishesScreenState extends State<DishesScreen> {
                 style: TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.w800,
+                  color: Colors.black,
                 ),
               ),
               Divider(),
               SizedBox(height: 10.0),
-              
               Countryinfo(countryname: 'yemen'),
             ])));
   }
@@ -138,10 +136,8 @@ class _CountryinfoState extends State<Countryinfo> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DishProvider>(
-      builder: (context, model, child) => model.dishcountry.data==null
-
+      builder: (context, model, child) => model.dishcountry.data == null
           ? CircularProgressIndicator()
-                                  
           : GridView.builder(
               shrinkWrap: true,
               primary: false,
@@ -151,7 +147,9 @@ class _CountryinfoState extends State<Countryinfo> {
                 childAspectRatio: MediaQuery.of(context).size.width /
                     (MediaQuery.of(context).size.height / 1.25),
               ),
-              itemCount: model.dishcountry.data.length==null?0: model.dishcountry.data.length,
+              itemCount: model.dishcountry.data.length == null
+                  ? 0
+                  : model.dishcountry.data.length,
               itemBuilder: (BuildContext context, int index) {
                 // Map food = foods[index];
                 return GridProduct(
@@ -159,8 +157,8 @@ class _CountryinfoState extends State<Countryinfo> {
                   img: model.dishcountry.data[index].img,
                   isFav: model.dishcountry.data[index].isfavor,
                   name: Provider.of<AppProvider>(context).locale == 'ar'
-                              ? model.dishResponse.data[index].name_ar
-                              : model.dishResponse.data[index].name,
+                      ? model.dishResponse.data[index].name_ar
+                      : model.dishResponse.data[index].name,
                   rating: model.dishcountry.data[index].rateing,
                   raters: model.dishcountry.data[index].price,
                   describtion: model.dishcountry.data[index].description,
@@ -176,6 +174,6 @@ class _CountryinfoState extends State<Countryinfo> {
   @override
   void dispose() {
     super.dispose();
-   //model.dispose();
+    //model.dispose();
   }
 }

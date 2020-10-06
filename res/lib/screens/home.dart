@@ -4,10 +4,10 @@ import 'package:res/data/providers/app_provider.dart';
 
 import 'package:res/data/providers/dishProvider.dart';
 import 'package:res/generated/i18n.dart';
-import 'package:res/screens/dishes.dart';
+import 'package:res/screens/cashe.dart';
 import 'package:res/widgets/grid_product.dart';
 import 'package:res/widgets/home_category.dart';
-import 'package:res/widgets/loaders/color_loader_2.dart';
+import 'package:res/widgets/loaders/color_loader_3.dart';
 import 'package:res/widgets/slider_item.dart';
 
 import 'package:res/util/categories.dart';
@@ -68,7 +68,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return DishesScreen();
+                          return MyHomePage();
                         },
                       ),
                     );
@@ -85,12 +85,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               builder: (BuildContext context, DishProvider model,
                       Widget child) =>
                   model.isLoading
-                      ? Center(
-                          child: ColorLoader2(
-                          color1: Colors.redAccent,
-                          color2: Colors.deepPurple,
-                          color3: Colors.green,
-                        ))
+                      ? Center(child: ColorLoader3())
                       : CarouselSlider(
                           height: MediaQuery.of(context).size.height / 2.4,
                           items: map<Widget>(
@@ -100,12 +95,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                               // return ChangeNotifierProvider<DishProvider>(
                               //   create: (ctx) => DishProvider(),
                               return model.isLoading
-                                  ? Center(
-                                      child: ColorLoader2(
-                                      color1: Colors.redAccent,
-                                      color2: Colors.deepPurple,
-                                      color3: Colors.green,
-                                    ))
+                                  ? Center(child: ColorLoader3())
                                   : SliderItem(
                                       id: model.dishResponse.data[index].id,
                                       img: model.dishResponse.data[index].img,
@@ -114,9 +104,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                                       name: Provider.of<AppProvider>(context)
                                                   .locale ==
                                               'ar'
-                                          ? model
-                                              .dishResponse.data[index].name
-                                          : model.dishResponse.data[index].name_ar,
+                                          ? model.dishResponse.data[index].name
+                                          : model
+                                              .dishResponse.data[index].name_ar,
                                       rating: model
                                           .dishResponse.data[index].rateing
                                           .toDouble(),
@@ -205,12 +195,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
             //     //final dish=Provider.of(context);
             Consumer<DishProvider>(
               builder: (context, model, child) => model.isLoading
-                  ? Center(
-                      child: ColorLoader2(
-                      color1: Colors.redAccent,
-                      color2: Colors.deepPurple,
-                      color3: Colors.green,
-                    ))
+                  ? Center(child: ColorLoader3())
                   : GridView.builder(
                       shrinkWrap: true,
                       primary: false,
@@ -227,7 +212,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                           id: model.dishResponse.data[index].id,
                           img: model.dishResponse.data[index].img,
                           isFav: model.dishResponse.data[index].isfavor,
-                          name: Provider.of<AppProvider>(context).locale =='en'
+                          name: Provider.of<AppProvider>(context).locale == 'en'
                               ? model.dishResponse.data[index].name
                               : model.dishResponse.data[index].name_ar,
                           rating: model.dishResponse.data[index].rateing,

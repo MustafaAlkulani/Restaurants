@@ -67,6 +67,7 @@ class _COuntryCategoryState extends State<COuntryCategory> {
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 17,
+                        color: Colors.white,
                       ),
                     ),
 

@@ -120,14 +120,7 @@ class SliderItem extends StatelessWidget {
                   ),
                 ],
               ),
-              // Expanded(
-              //   flex: 1,
-              //   child: Column(
-              //     children: <Widget>[
-              //       IconButton(icon: Icon(Icons.shopping_cart,color:Colors.red), onPressed: null)
-              //     ],
-              //   ),
-              // )
+            
             ],
           ),
         ],

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:res/data/classes/abstract/query_model.dart';
 import 'package:res/data/models/usermodel.dart';
+import 'package:res/util/const.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProvider extends QueryModel{
@@ -18,7 +19,7 @@ class UserProvider extends QueryModel{
 
   Future getData([BuildContext context]) async {
     if (1 == 1) {
-      var user = await fetchData('http://192.168.1.14:8000/api/user');
+      var user = await fetchData('${Constants.url}/user');
 
       //print(orders);
       userResponse = User.fromJson(user);
@@ -59,7 +60,7 @@ class UserProvider extends QueryModel{
   Future login(String email,String password) async {
    try {
       // print('fffffffffffffffffffffff');
-      var user = await login_query('http://192.168.1.14:8000/api/login',{
+      var user = await login_query('${Constants.url}/login',{
         'email':email,
         'password':password,
 
@@ -81,7 +82,7 @@ class UserProvider extends QueryModel{
 Future<void> register(  String name,String email,String password,String c_password) async {
   try{
     print('iam here');
-      var user = await register_qury('http://192.168.1.14:8000/api/register',{
+      var user = await register_qury('${Constants.url}/register',{
         'name':name,
         'email':email,
         'password':password,

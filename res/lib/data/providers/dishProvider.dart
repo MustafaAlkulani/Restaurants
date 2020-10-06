@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:res/data/classes/abstract/query_model.dart';
 import 'package:res/data/models/dishmodel.dart';
+import 'package:res/util/const.dart';
 
 // import 'package:res/util/url.dart';
 
@@ -28,7 +29,7 @@ class DishProvider extends QueryModel {
 
   Future getData([BuildContext context]) async {
     if (1 == 1) {
-      var dishes = await fetchData('http://192.168.1.14:8000/api/dish');
+      var dishes = await fetchData('${Constants.url}/dish');
       // var dishes = await fetchData('http://localhost/api/dish');
 
       dishResponse = DishModel.fromJson(dishes);
@@ -44,7 +45,7 @@ class DishProvider extends QueryModel {
   Future getDishes([BuildContext context]) async {
     if (1 == 1) {
       dishResponse = DishModel.fromJson(
-          await fetchData('http://192.168.1.14:8000/api/dish'));
+          await fetchData('${Constants.url}/dish'));
     }
     finishLoading();
     return null;
@@ -67,7 +68,7 @@ class DishProvider extends QueryModel {
       dishResponse.data[id - 1].isfavor = !dishResponse.data[id - 1].isfavor;
       int fav = dishResponse.data[id - 1].isfavor == true ? 1 : 0;
     
-      await uploadData('http://192.168.1.14:8000/api/dish/$id',
+      await uploadData('${Constants.url}/dish/$id',
           {'id': id, 'isfavor': fav});
        
      getData();
@@ -87,7 +88,7 @@ class DishProvider extends QueryModel {
     try {
 
    dishResponse = DishModel.fromJson(
-          await fetchData('http://192.168.1.14:8000/api/dish/search/$text'));
+          await fetchData('${Constants.url}/dish/search/$text'));
     
     finishLoading();
     
@@ -95,11 +96,7 @@ class DishProvider extends QueryModel {
   
 
     } on DioError catch (e) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx and is also not 304.
-
-      // Something happened in setting up or sending the request that triggered an Error
-
+ 
       print(e.message);
     }
   }
@@ -109,7 +106,7 @@ class DishProvider extends QueryModel {
     try {
 
    dishResponse = DishModel.fromJson(
-          await fetchData('http://192.168.1.14:8000/api/dish/cat/$id'));
+          await fetchData('${Constants.url}/dish/cat/$id'));
     
     finishLoading();
     
@@ -132,7 +129,7 @@ class DishProvider extends QueryModel {
     try {
 
    dishResponse = DishModel.fromJson(
-          await fetchData('http://192.168.1.14:8000/api/dish/country'));
+          await fetchData('${Constants.url}/dish/country'));
     
     finishLoading();
     
@@ -149,7 +146,7 @@ class DishProvider extends QueryModel {
     try {
 
    dishcountry = DishModel.fromJson(
-          await fetchData('http://192.168.1.14:8000/api/dish/country/$name'));
+          await fetchData('${Constants.url}/dish/country/$name'));
     
     finishLoading();
     
@@ -171,7 +168,7 @@ class DishProvider extends QueryModel {
        print('id.toString()hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
     
         
-      await uploadData('http://192.168.1.14:8000/api/order/add',
+      await uploadData('${Constants.url}/order/add',
        {
         'name': name,
         'img': img,

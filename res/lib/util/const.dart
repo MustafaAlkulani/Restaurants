@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 class Constants{
 
+ static String url="http://192.168.1.9:8000/api";
   static String appName = "Res";
 
   //Colors for theme

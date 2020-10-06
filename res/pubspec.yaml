@@ -19,7 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  cached_network_image: 
+  flutter_blurhash:
   introduction_screen: ^1.0.8
   shared_preferences: ^0.5.4+5
   font_awesome_flutter: ^8.5.0

@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:res/data/classes/abstract/query_model.dart';
 
 import 'package:res/data/models/orderModel.dart';
+import 'package:res/util/const.dart';
 
 class OrderProvider extends QueryModel {
   @override
@@ -26,7 +27,7 @@ class OrderProvider extends QueryModel {
   Future getData([BuildContext context]) async {
     try {
       if (1 == 1) {
-        var orders = await fetchData('http://192.168.1.14:8000/api/order');
+        var orders = await fetchData('${Constants.url}/order');
 
         orderResponse = OrderModel.fromJson(orders);
      
@@ -52,7 +53,7 @@ class OrderProvider extends QueryModel {
   Future<void> getNewData([BuildContext context]) async {
     try {
       if (1 == 1) {
-        var orders = await fetchData('http://192.168.1.14:8000/api/order');
+        var orders = await fetchData('${Constants.url}/order');
 
         orderResponse = OrderModel.fromJson(orders);
         
@@ -76,7 +77,7 @@ class OrderProvider extends QueryModel {
       print(counter.toString());
       print(count.toString());
 
-      await uploadData('http://192.168.1.14:8000/api/order/increase', {
+      await uploadData('${Constants.url}/order/increase', {
         'id': id,
         'count': counter,
       });
@@ -93,7 +94,7 @@ class OrderProvider extends QueryModel {
 
   Future<void> deletorder(int id) async {
     try {
-      await deletdata('http://192.168.1.14:8000/api/order/delete/$id');
+      await deletdata('${Constants.url}/order/delete/$id');
 
        count=orderResponse.data.length;
          //_items.remove(productId);
@@ -122,7 +123,7 @@ class OrderProvider extends QueryModel {
 
     counter = count;
 
-    await uploadData('http://192.168.1.14:8000/api/order/decrease',
+    await uploadData('${Constants.url}/order/decrease',
         {'id': id, 'count': count});
     notifyListeners();
     return null;
@@ -132,7 +133,7 @@ class OrderProvider extends QueryModel {
   ///
   ///
   Future<void> getTotal() async {
-    var orders = await fetchData('http://192.168.1.14:8000/api/order');
+    var orders = await fetchData('${Constants.url}/order');
 
     //print(orders);
     total = 0;
@@ -174,7 +175,7 @@ class OrderProvider extends QueryModel {
 
        print('id.toString()hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
     
-      await uploadData('http://192.168.1.14:8000/api/order/add',
+      await uploadData('${Constants.url}/order/add',
        {
         'name': name,
         'img': img,

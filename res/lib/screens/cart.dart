@@ -6,7 +6,7 @@ import 'package:res/screens/checkout.dart';
 
 import 'package:res/widgets/cart_item.dart';
 import 'package:provider/provider.dart';
-import 'package:res/widgets/loaders/color_loader_2.dart';
+import 'package:res/widgets/loaders/color_loader_3.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _CartScreenState extends State<CartScreen>
     super.build(context);
     return Scaffold(
       body: order.orderResponse==null?Text('no data found'): order.isLoading
-          ?Center(child: ColorLoader2(color1: Colors.redAccent,color2: Colors.deepPurple,color3: Colors.green,))
+          ?Center(child: ColorLoader3())
                  
           : order.orderResponse.data == null
          ? Text('No data found ')
